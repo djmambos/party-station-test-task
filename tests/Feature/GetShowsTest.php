@@ -14,6 +14,13 @@ class GetShowsTest extends TestCase
     public function testGetShow(): void
     {
         $response = $this->get('/shows');
+
         $response->assertStatus(200);
+        $response->assertJsonIsObject();
+        $response->assertJsonStructure([
+           'response' => [
+               '*' => ['id', 'name'],
+           ]
+        ]);
     }
 }
